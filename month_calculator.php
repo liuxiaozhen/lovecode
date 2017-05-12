@@ -1,12 +1,15 @@
 <?php
-function after_sleep($salary,$housefund_ratio=0.1,$person_insurance_ratio=.08,$medical_insurance_ratio=.04)
+function after_sleep($salary,$housefund_ratio=0.1,$person_insurance_ratio=.08,$medical_insurance_ratio=.04, $insurance_final=null)
 {
   $base = 3500;
   $housefund = $salary * $housefund_ratio; //.10 .8
   $person_insurance = $salary * $person_insurance_ratio;
   $medical_insurance = $salary * $medical_insurance_ratio;
   $insurance=($housefund + $person_insurance +$medical_insurance);
-  $insurance = 2400;
+  if( $insurance_final !== null ){
+	 $insurance = $insurance_final;  
+  }
+
   if ($salary - $insurance  < $base ){
     return $salary - $insurance;
   }
@@ -36,6 +39,6 @@ function after_sleep($salary,$housefund_ratio=0.1,$person_insurance_ratio=.08,$m
 }
 echo "税前\t税后\n";
 for ($i=20000; $i<=70000; $i+=100)
-echo $i,"\t",after_sleep($i,0,0,0),"\n";
+echo $i,"\t",after_sleep($i, 0, 0, 0, 2400),"\n";
 
 ?>
