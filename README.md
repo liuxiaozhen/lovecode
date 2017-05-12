@@ -1,2 +1,2 @@
 # lovecode
-lovecode
+example code
